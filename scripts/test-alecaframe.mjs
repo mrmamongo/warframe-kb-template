@@ -388,7 +388,7 @@ test('a preview from a prepared snapshot works and does not touch collection fil
     const snapshotPath = path.join(database.directory, 'snapshot.json');
     fs.writeFileSync(snapshotPath, JSON.stringify(readCache(database.cachePath)));
     const before = fs.readFileSync(path.join(database.directory, 'data', 'inventory.json'));
-    const result = runImport(database, ['--snapshot', snapshotPath]);
+    const result = runImport(database, [...importArgs(database), '--snapshot', snapshotPath]);
     assert.equal(result.status, 0, result.stderr);
     assert.equal(JSON.parse(result.stdout).status, 'preview');
     assert.deepEqual(fs.readFileSync(path.join(database.directory, 'data', 'inventory.json')), before);

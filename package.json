@@ -11,7 +11,7 @@
     "catalog": "node scripts/import-catalog.mjs",
     "import": "node scripts/import-alecaframe.mjs",
     "import:apply": "node scripts/import-alecaframe.mjs --apply",
-    "test": "node --test scripts/test-alecaframe.mjs scripts/test-data-files.mjs scripts/test-scripts.mjs"
+    "test": "node --test scripts/test-alecaframe.mjs scripts/test-data-files.mjs scripts/test-scripts.mjs scripts/test-skills.mjs"
   },
   "license": "MIT"
 }

@@ -31,6 +31,7 @@ test('expected script entry points are present', () => {
     'scripts/test-alecaframe.mjs',
     'scripts/test-data-files.mjs',
     'scripts/test-scripts.mjs',
+    'scripts/test-skills.mjs',
     'optional/mcp/run-warframe-mcp.mjs',
     'optional/mcp/check-warframe-mcp.mjs',
     'optional/mcp/warframe-mcp-local.patch',

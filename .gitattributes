@@ -1,0 +1,3 @@
+# Normalize text files to LF in the repository so Windows checkouts behave
+# like the CI on Linux. Binary files are detected automatically.
+* text=auto eol=lf

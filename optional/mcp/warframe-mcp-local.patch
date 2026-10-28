@@ -1,0 +1,84 @@
+diff --git a/src/tools/items.ts b/src/tools/items.ts
+index c33d5ef..000eb96 100644
+--- a/src/tools/items.ts
++++ b/src/tools/items.ts
+@@ -345,7 +345,7 @@ function formatMod(mod: ModItem): string {
+       lines.push("  Missions:");
+       missions.forEach((d) => {
+         lines.push(
+-          `    • ${d.location} — ${(d.chance * 100).toFixed(2)}% (${d.rarity})`
++          `    • ${d.location} — ${d.chance.toFixed(2)}% (${d.rarity})`
+         );
+       });
+     }
+@@ -353,7 +353,7 @@ function formatMod(mod: ModItem): string {
+       lines.push("  Enemies:");
+       enemies.forEach((d) => {
+         lines.push(
+-          `    • ${d.location} — ${(d.chance * 100).toFixed(2)}% (${d.rarity})`
++          `    • ${d.location} — ${d.chance.toFixed(2)}% (${d.rarity})`
+         );
+       });
+     }
+@@ -408,7 +408,7 @@ function formatGenericItem(item: GenericItem): string {
+     lines.push("\nACQUISITION:");
+     item.drops.slice(0, 10).forEach((d) => {
+       lines.push(
+-        `  • ${d.location} — ${(d.chance * 100).toFixed(2)}% (${d.rarity})`
++        `  • ${d.location} — ${d.chance.toFixed(2)}% (${d.rarity})`
+       );
+     });
+   }
+@@ -424,7 +424,7 @@ function formatGenericItem(item: GenericItem): string {
+   return lines.join("\n");
+ }
+ 
+-/** Format ItemDrop[] (decimal chance) into display strings. */
++/** Format ItemDrop[] (percentage chance) into display strings. */
+ function formatItemDrops(drops: ItemDrop[]): string[] {
+   // Group by base relic name for multi-refinement display
+   const relicDrops = drops.filter((d) => d.location.includes("Relic"));
+@@ -462,7 +462,7 @@ function formatItemDrops(drops: ItemDrop[]): string[] {
+             b.refinement
+           )
+       )
+-      .map((r) => `${(r.chance * 100).toFixed(0)}%`)
++      .map((r) => `${r.chance.toFixed(0)}%`)
+       .join(" / ");
+     const rarity = refinements[0]?.rarity ?? "";
+     lines.push(`• ${relic} — ${rarity} (${chances} by refinement)`);
+@@ -470,7 +470,7 @@ function formatItemDrops(drops: ItemDrop[]): string[] {
+ 
+   for (const d of otherDrops) {
+     lines.push(
+-      `• ${d.location} — ${(d.chance * 100).toFixed(2)}% (${d.rarity})`
++      `• ${d.location} — ${d.chance.toFixed(2)}% (${d.rarity})`
+     );
+   }
+ 
+diff --git a/src/tools/primeVault.ts b/src/tools/primeVault.ts
+index be82edb..53445f9 100644
+--- a/src/tools/primeVault.ts
++++ b/src/tools/primeVault.ts
+@@ -75,7 +75,7 @@ async function handlePrimeVaultStatus(name: string): Promise<string> {
+             lines.push(`  ${comp.name}:`);
+             relicDrops.forEach((d) => {
+               lines.push(
+-                `    • ${d.location} — ${(d.chance * 100).toFixed(0)}% (${d.rarity})`
++                `    • ${d.location} — ${d.chance.toFixed(0)}% (${d.rarity})`
+               );
+             });
+           }
+diff --git a/src/types/warframestat.ts b/src/types/warframestat.ts
+index 60a8505..7ca08cd 100644
+--- a/src/types/warframestat.ts
++++ b/src/types/warframestat.ts
+@@ -292,7 +292,7 @@ export interface ItemIntroduced {
+ }
+ 
+ export interface ItemDrop {
+-  chance: number; // DECIMAL (0.02 = 2%). Different scale from DropResult.chance.
++  chance: number; // PERCENTAGE (0.17 = 0.17%); verified against the live API.
+   location: string; // "Axi R1 Relic" or "Kuva Scorpion"
+   rarity: string;
+   type: string;

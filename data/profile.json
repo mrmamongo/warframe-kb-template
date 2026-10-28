@@ -1,0 +1,26 @@
+{
+  "schema_version": 1,
+  "updated_on": null,
+  "timezone": null,
+  "mastery_rank": null,
+  "story_progress": null,
+  "priority": null,
+  "collection_scope": [
+    "base",
+    "prime",
+    "umbra"
+  ],
+  "platform": null,
+  "tracking_method": "assistant_maintained_user_reports",
+  "clan_research_access": null,
+  "steel_path_unlocked": null,
+  "syndicate_ranks": {},
+  "preferences": {
+    "session_minutes": null,
+    "solo_or_squad": null,
+    "allow_platinum_purchases": null,
+    "collection_goal_owned_or_mastered": null,
+    "component_tracking_scope": null,
+    "preferred_farm_style": null
+  }
+}
